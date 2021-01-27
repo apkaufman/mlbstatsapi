@@ -11,7 +11,6 @@ else:
 player_last_name = str.lower(input('What is this player\'s last name? '))
 player_last_name = player_last_name + "%25"
 
-#player_info = requests.get("http://lookup-service-prod.mlb.com/json/named.search_player_all.bam?sport_code='mlb'&active_sw='Y'&name_part='trout%25'")
 player_info = requests.get("http://lookup-service-prod.mlb.com/json/named.search_player_all.bam?sport_code='mlb'&active_sw='" + isactive + "'&name_part='" + player_last_name + "'")
 
 pprint.pprint(player_info.json())
