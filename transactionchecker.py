@@ -1,5 +1,4 @@
 import requests
-import pprint
 
 print('Transaction Checker')
 
@@ -21,6 +20,10 @@ else:
     endday = input('Please enter the two-digit ending day. ')
     enddate = endyear + endmonth + endday
 
-transaction_info = requests.get("http://lookup-service-prod.mlb.com/json/named.transaction_all.bam?sport_code='mlb'&start_date='" + startdate + "'&end_date='" + enddate + "'")
+transactions = requests.get("http://lookup-service-prod.mlb.com/json/named.transaction_all.bam?sport_code='mlb'&start_date='" + startdate + "'&end_date='" + enddate + "'").json()['transaction_all']['queryResults']['row']
+notes = []
 
-pprint.pprint(transaction_info.json())
+for tran in transactions:
+    notes.append(tran['note'])
+
+print(notes)
